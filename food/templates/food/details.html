@@ -1,0 +1,56 @@
+{% extends 'food/base.html' %}
+
+{% block title %}{{ item.name }} - Food Detail{% endblock %}
+
+{% block body %}
+<div class="container mx-auto p-6">
+    <!-- Back Button -->
+    <a 
+        href="/food" 
+        class="inline-block mb-6 text-gray-700 hover:text-green-600 transition duration-300 ease-in-out font-medium"
+    >
+        &larr; Back to Menu
+    </a>
+
+    <!-- Item Details Section -->
+    <div class="bg-white rounded-lg shadow-xl overflow-hidden p-8 space-y-6">
+        <!-- Title -->
+        <h1 class="text-4xl font-bold text-gray-900">{{ item.name }}</h1>
+
+        <!-- Image -->
+        <img 
+            src="{{ item.image }}" 
+            alt="{{ item.name }}" 
+            class="w-full h-auto object-contain rounded-lg max-h-96"
+            loading="lazy"
+        >
+
+        <!-- Description -->
+        <p class="text-gray-700 text-lg leading-relaxed">{{ item.description }}</p>
+
+        <!-- Price -->
+        <div>
+            <span class="text-2xl font-semibold text-green-600">${{ item.price }}</span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-between items-center">
+            <!-- Edit Button (Optional) -->
+            <a 
+                href="{% url 'food:update_item' item.id %}" 
+                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition duration-300 ease-in-out"
+            >
+                Edit
+            </a>
+
+            <!-- Delete Button -->
+            <a 
+                href="{% url 'food:delete_item' item.id %}" 
+                class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md transition duration-300 ease-in-out"
+            >
+                Delete
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'food/base.html' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+<div class="container mx-auto p-6">
+    <!-- Menu Items -->
+    <div class="space-y-8">
+        {% for item in item_list %}
+        <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden flex flex-col sm:flex-row items-center p-6 transform transition-transform hover:scale-[1.02]">
+            <!-- Image Section -->
+            <div class="w-full sm:w-48 h-48 sm:h-auto mb-4 sm:mb-0 sm:mr-6">
+                <img 
+                    class="w-full h-full object-cover rounded-lg" 
+                    src="{{ item.image }}" 
+                    alt="{{ item.name }}"
+                    loading="lazy"
+                >
+            </div>
+
+            <!-- Text Section -->
+            <div class="flex-1 space-y-4">
+                <!-- Title -->
+                <h2 class="text-2xl font-bold text-gray-800">{{ item.name }}</h2>
+
+                <!-- Description -->
+                <p class="text-gray-600 text-sm leading-relaxed">{{ item.description }}</p>
+
+                <!-- Price -->
+                <div>
+                    <span class="text-lg font-semibold text-green-600">${{ item.price }}</span>
+                </div>
+            </div>
+
+            <!-- View Details Button (Aligned to the Right) -->
+            <div class="flex-shrink-0 ml-auto mt-4 sm:mt-0">
+                <a 
+                    href="{% url 'food:detail' item.id %}" 
+                    class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-full transition duration-300 ease-in-out"
+                >
+                    View Details
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center">
+            <p class="text-gray-600 text-lg font-medium">No items available.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

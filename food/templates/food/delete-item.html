@@ -1,0 +1,50 @@
+{% extends 'food/base.html' %}
+
+{% block title %}Delete {{ item.name }}{% endblock %}
+
+{% block body %}
+<div class="container mx-auto p-6">
+    <!-- Back Button -->
+    <a 
+        href="/food" 
+        class="inline-block mb-6 text-gray-700 hover:text-green-600 transition duration-300 ease-in-out font-medium"
+    >
+        &larr; Back to Menu
+    </a>
+
+    <!-- Delete Confirmation Section -->
+    <div class="bg-white rounded-lg shadow-xl overflow-hidden p-8 space-y-6 max-w-lg mx-auto">
+        <!-- Title -->
+        <h1 class="text-2xl font-bold text-gray-900 text-center">Delete Item</h1>
+
+        <!-- Confirmation Message -->
+        <p class="text-gray-700 text-lg leading-relaxed text-center">
+            Are you sure you want to delete <strong>{{ item.name }}</strong>?
+        </p>
+
+        <!-- Form -->
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+
+            <!-- Action Buttons -->
+            <div class="flex justify-center space-x-4">
+                <!-- Cancel Button -->
+                <a 
+                    href="/food" 
+                    class="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-md transition duration-300 ease-in-out"
+                >
+                    Cancel
+                </a>
+
+                <!-- Confirm Button -->
+                <button 
+                    type="submit" 
+                    class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md transition duration-300 ease-in-out"
+                >
+                    Confirm
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
