@@ -6,3 +6,4 @@ class Itemform(forms.ModelForm):
         model = Item
         fields =['name','description','price','image']
 
+ 
