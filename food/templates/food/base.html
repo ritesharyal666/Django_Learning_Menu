@@ -33,6 +33,7 @@
                         </a>
                     </div>
                 </div>
+                {% if user.is_authenticated %}
 
                 <!-- Profile Picture and Login/Logout (Right Side) -->
                 <div class="flex items-center space-x-4">
@@ -40,12 +41,11 @@
                     <a href="{% url 'profilepage' %}" class="flex-shrink-0">
                         <img 
                             class="h-10 w-10 rounded-full border-2 border-green-500" 
-                            src="{{ user.profile.avatar.url }}" 
+                            src="{{ user.profile.image.url }}" 
                             alt="Profile Picture"
                             onerror="this.src='https://via.placeholder.com/40'; this.onerror=null;"
                         >
                     </a>
-                    {% if user.is_authenticated %}
 
                     <!-- Logout Form -->
                     <form method="POST" action="{% url 'logout' %}" class="inline">
